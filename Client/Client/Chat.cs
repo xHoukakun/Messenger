@@ -18,6 +18,7 @@ namespace Client
         public Chat()
         {
             InitializeComponent();
+            User u = new User();
         }
     }
 }

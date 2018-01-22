@@ -17,13 +17,14 @@ namespace Client
     {
         public Login()
         {
+            User u = new User();
             InitializeComponent();
             
         }
 
         private void bLogIn_Click(object sender, EventArgs e)
         {
-
+            
             Visible = false;
             Chat chat = new Chat();
             chat.ShowDialog();

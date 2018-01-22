@@ -16,4 +16,9 @@ namespace Client
         TcpClient TCP;
         string IpAdress;
     }
+     static void setName()
+        {
+    name=sName;
+    return(name);
+        }
 }
