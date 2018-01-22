@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Client
 {
@@ -15,6 +18,18 @@ namespace Client
         public Login()
         {
             InitializeComponent();
+            
+        }
+
+        private void bLogIn_Click(object sender, EventArgs e)
+        {
+
+            Visible = false;
+            Chat chat = new Chat();
+            chat.ShowDialog();
+            Close();
+
+           
         }
     }
 }
