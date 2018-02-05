@@ -13,24 +13,32 @@ using System.Net.Sockets;
 
 namespace Client
 {
+   
     public partial class Login : Form
     {
         public Login()
         {
             User u = new User();
             InitializeComponent();
+          
             
         }
 
         private void bLogIn_Click(object sender, EventArgs e)
         {
-            
-            Visible = false;
             Chat chat = new Chat();
+            chat.set_MyName(Convert.ToString(tUserName.Text));
+            Visible = false;
+            
             chat.ShowDialog();
             Close();
 
            
+        }
+
+        private void tUserName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
