@@ -16,12 +16,19 @@ namespace Client
     public partial class Chat : Form
     {
         string TextBox;
-        string MyName;
+        public string MyName { get; set; }
+        public string Password { get; set; }
+        private IPEndPoint myEndPoint;
+        private Socket mySocket;
+        private int port;
+        private IPAddress myIp;
+        
         public Chat()
         {
             InitializeComponent();
             User u = new User();
             Login Login = new Login();
+           
         }
 
         public void set_MyName(string alpha)
@@ -30,7 +37,7 @@ namespace Client
         }
         private void bSenden_Click(object sender, EventArgs e)
         {
-
+            Connection();
             TextBox = Convert.ToString(textBoxSender.Text);
             if (TextBox.Length > 0)
             {
@@ -41,6 +48,25 @@ namespace Client
 
 
                 textBoxSender.ResetText();
+            }
+
+        }
+
+        private void Connection()
+        {
+            try
+            {
+
+                mySocket.Connect(new IPEndPoint(IPAddress.Parse("localhost"), 1235)); //Server Endpoint  Was für ein Port und Was für eine IP 
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            if (mySocket.Connected)
+            {
+                MessageBox.Show("Connection Establish");
+                mySocket.Close();
             }
         }
 
@@ -69,6 +95,14 @@ namespace Client
             textBox2.ResetText();
             textBox2.AppendText(textBox1.Text);
             textBox1.ResetText();
+        }
+
+        private void Chat_Load(object sender, EventArgs e)
+        {
+            myIp = IPAddress.Parse("localhost");
+            port = 1234;
+            myEndPoint = new IPEndPoint(myIp, port);
+            mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
     }
 }

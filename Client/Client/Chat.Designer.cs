@@ -173,6 +173,7 @@
             this.Controls.Add(this.gClients);
             this.Name = "Chat";
             this.Text = "Chat";
+            this.Load += new System.EventHandler(this.Chat_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
