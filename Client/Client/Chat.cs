@@ -64,7 +64,7 @@ namespace Client
             {
                 
 
-                mySocket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8887)); //Server Endpoint  Was für ein Port und Was für eine IP 
+                mySocket.Connect(new IPEndPoint(IPAddress.Parse("192.168.43.22"), 8887)); //Server Endpoint  Was für ein Port und Was für eine IP 
             }
             catch (Exception)
             {
