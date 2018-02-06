@@ -16,6 +16,7 @@ namespace Client
     public partial class Chat : Form
     {
         string TextBox;
+        public string MyNames;
         public string MyName { get; set; }
         public string Password { get; set; }
         private IPEndPoint myEndPoint;
@@ -28,12 +29,17 @@ namespace Client
             InitializeComponent();
             User u = new User();
             Login Login = new Login();
+            myIp = IPAddress.Parse("127.0.0.1");
+            port = 1234;
+            myEndPoint = new IPEndPoint(myIp, port);
+            mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
            
         }
 
-        public void set_MyName(string alpha)
+        public void sets_MyNames(string alpha)
         {
-            MyName = alpha;
+            MyNames = alpha;
+            Connection();
         }
         private void bSenden_Click(object sender, EventArgs e)
         {
@@ -42,7 +48,7 @@ namespace Client
             if (TextBox.Length > 0)
             {
                 textverlauf();
-                textBox1.AppendText(MyName);
+                textBox1.AppendText(MyNames);
                 textBox1.AppendText(":");
                 textBox1.AppendText(textBoxSender.Text);
 
@@ -56,8 +62,9 @@ namespace Client
         {
             try
             {
+                
 
-                mySocket.Connect(new IPEndPoint(IPAddress.Parse("localhost"), 1235)); //Server Endpoint  Was für ein Port und Was für eine IP 
+                mySocket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8887)); //Server Endpoint  Was für ein Port und Was für eine IP 
             }
             catch (Exception)
             {
@@ -102,7 +109,7 @@ namespace Client
             myIp = IPAddress.Parse("localhost");
             port = 1234;
             myEndPoint = new IPEndPoint(myIp, port);
-            mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); //TCP Echo Server
         }
     }
 }

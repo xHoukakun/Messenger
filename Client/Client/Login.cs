@@ -27,7 +27,7 @@ namespace Client
         private void bLogIn_Click(object sender, EventArgs e)
         {
             Chat chat = new Chat();
-            chat.set_MyName(Convert.ToString(tUserName.Text));
+            chat.sets_MyNames(Convert.ToString(tUserName.Text));
             Visible = false;
             
             chat.ShowDialog();
