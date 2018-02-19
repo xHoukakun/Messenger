@@ -18,11 +18,14 @@ namespace Client
         string TextBox;
         public string MyNames;
         public string MyName { get; set; }
-        public string Password { get; set; }
         private IPEndPoint myEndPoint;
         private Socket mySocket;
         private int port;
         private IPAddress myIp;
+        private const int BUFSIZE = 32;
+        private const int BACKLOG = 5;
+        byte[] rcvBuffer = new byte[BUFSIZE];
+        int bytesRcvd;
         
         public Chat()
         {
@@ -35,7 +38,7 @@ namespace Client
             mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
            
         }
-
+      
         public void sets_MyNames(string alpha)
         {
             MyNames = alpha;
@@ -73,6 +76,7 @@ namespace Client
             if (mySocket.Connected)
             {
                 MessageBox.Show("Connection Establish");
+                mySocket.Send(rcvBuffer, 0, bytesRcvd, SocketFlags.None);
                 mySocket.Close();
             }
         }

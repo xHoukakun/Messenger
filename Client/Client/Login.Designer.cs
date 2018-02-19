@@ -30,6 +30,7 @@
         {
             this.tUserName = new System.Windows.Forms.TextBox();
             this.bLogIn = new System.Windows.Forms.Button();
+            this.tPassword = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tUserName
@@ -50,12 +51,21 @@
             this.bLogIn.UseVisualStyleBackColor = true;
             this.bLogIn.Click += new System.EventHandler(this.bLogIn_Click);
             // 
+            // tPassword
+            // 
+            this.tPassword.Location = new System.Drawing.Point(81, 144);
+            this.tPassword.Name = "tPassword";
+            this.tPassword.Size = new System.Drawing.Size(100, 20);
+            this.tPassword.TabIndex = 2;
+            this.tPassword.TextChanged += new System.EventHandler(this.tPassword_TextChanged);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.tPassword);
             this.Controls.Add(this.bLogIn);
             this.Controls.Add(this.tUserName);
             this.Name = "Login";
@@ -69,5 +79,6 @@
 
         private System.Windows.Forms.TextBox tUserName;
         private System.Windows.Forms.Button bLogIn;
+        private System.Windows.Forms.TextBox tPassword;
     }
 }

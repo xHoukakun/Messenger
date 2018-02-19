@@ -40,5 +40,10 @@ namespace Client
         {
 
         }
+
+        private void tPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
