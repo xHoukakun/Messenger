@@ -62,6 +62,7 @@ namespace Client
         private void Connection()
         {
             Byte[] bytesSent = Encoding.ASCII.GetBytes(MyNames);
+            Byte[] bytesReceived = new Byte[4096];
             try
             {
                 
@@ -74,8 +75,15 @@ namespace Client
             }
             if (mySocket.Connected)
             {
+                int bytes = 0;
                 MessageBox.Show("Connection Establish");
                 mySocket.Send(bytesSent, bytesSent.Length, SocketFlags.None);
+                do
+                {
+                    bytes = mySocket.Receive(bytesReceived, bytesReceived.Length, SocketFlags.None);
+                    // kovertiere die Byte Daten in einen string
+                    MyNames = MyNames + Encoding.ASCII.GetString(bytesReceived, 0, bytes);
+                } while (bytes > 0);
                 mySocket.Close();
             }
         }
@@ -129,10 +137,10 @@ namespace Client
 
         private void Chat_Load(object sender, EventArgs e)
         {
-            myIp = IPAddress.Parse("localhost");
-            port = 8887;
-            myEndPoint = new IPEndPoint(myIp, port);
-            mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); //TCP Echo Server
+            //myIp = IPAddress.Parse("127.0.0.1");
+            //port = 8887;
+            //myEndPoint = new IPEndPoint(myIp, port);
+            //mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); //TCP Echo Server
         }
     }
 }
