@@ -22,18 +22,16 @@ namespace Client
         private Socket mySocket;
         private int port;
         private IPAddress myIp;
-        private const int BUFSIZE = 32;
-        private const int BACKLOG = 5;
-        byte[] rcvBuffer = new byte[BUFSIZE];
-        int bytesRcvd;
+       
         
+
         public Chat()
         {
             InitializeComponent();
             User u = new User();
             Login Login = new Login();
             myIp = IPAddress.Parse("127.0.0.1");
-            port = 1234;
+            port = 8887;
             myEndPoint = new IPEndPoint(myIp, port);
             mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
            
@@ -46,7 +44,7 @@ namespace Client
         }
         private void bSenden_Click(object sender, EventArgs e)
         {
-            Connection();
+            sConnect();
             TextBox = Convert.ToString(textBoxSender.Text);
             if (TextBox.Length > 0)
             {
@@ -63,6 +61,7 @@ namespace Client
 
         private void Connection()
         {
+            Byte[] bytesSent = Encoding.ASCII.GetBytes(MyNames);
             try
             {
                 
@@ -76,11 +75,31 @@ namespace Client
             if (mySocket.Connected)
             {
                 MessageBox.Show("Connection Establish");
-                mySocket.Send(rcvBuffer, 0, bytesRcvd, SocketFlags.None);
+                mySocket.Send(bytesSent, bytesSent.Length, SocketFlags.None);
                 mySocket.Close();
             }
         }
-
+        private void sConnect()
+        {
+            
+           TextBox = Convert.ToString(textBoxSender.Text);
+           Byte[] bytesSent = Encoding.ASCII.GetBytes(TextBox);
+           //Byte[] bytesReceived = new Byte[4096];
+            try
+            {
+                mySocket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8887));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            if (mySocket.Connected)
+            {
+                mySocket.Send(bytesSent, bytesSent.Length, SocketFlags.None);
+            }
+            mySocket.Close();
+            
+        }
         private void textBoxSender_TextChanged(object sender, EventArgs e)
         {
 
@@ -111,7 +130,7 @@ namespace Client
         private void Chat_Load(object sender, EventArgs e)
         {
             myIp = IPAddress.Parse("localhost");
-            port = 1234;
+            port = 8887;
             myEndPoint = new IPEndPoint(myIp, port);
             mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); //TCP Echo Server
         }
