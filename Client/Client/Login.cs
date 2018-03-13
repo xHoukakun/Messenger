@@ -20,28 +20,70 @@ namespace Client
         {
             User u = new User();
             InitializeComponent();
-          
+
             
         }
-
+       
         private void bLogIn_Click(object sender, EventArgs e)
         {
-            Chat chat = new Chat();
-            chat.sets_MyNames(Convert.ToString(tUserName.Text));
-            Visible = false;
-            
-            chat.ShowDialog();
-            Close();
 
-           
+            string sAddress = "";
+            string sServerIP;
+
+            IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
+            foreach (IPAddress address in localIPs)
+            {
+               
+                
+                   
+                if (address.ToString().Contains("."))
+                    {
+                    sAddress = Convert.ToString(address);
+                    };
+                    
+                
+
+            }
+            try {
+                if (String.IsNullOrWhiteSpace(tServerIP.Text))
+                {
+                    sServerIP = "127.0.0.1";
+
+                }
+                if (String.IsNullOrEmpty(tServerIP.Text))
+                {
+                    sServerIP = "127.0.0.1";
+
+                }
+                sServerIP = Convert.ToString(tServerIP.Text);
+                Chat chat = new Chat();
+                Visible = false;
+                Close();
+                chat.sets_MyNames(Convert.ToString(tUserName.Text),sAddress,sServerIP);            
+
+
+
+                chat.ShowDialog();
+
+            }
+            catch(Exception)
+            {
+
+            }
         }
-
+       
+        //  sAddress = Convert.ToString(address);
         private void tUserName_TextChanged(object sender, EventArgs e)
         {
 
         }
 
         private void tPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tServerIP_TextChanged(object sender, EventArgs e)
         {
 
         }
