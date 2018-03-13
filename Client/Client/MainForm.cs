@@ -25,14 +25,18 @@ namespace Client
         private void MainForm_Load(object sender, EventArgs e)
         {
 
+            try {
 
-            
-            path2 = Application.StartupPath + "\\Iah51muellerMessenger2.wav";
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+                path2 = Application.StartupPath + "\\Iah51muellerMessenger2.wav";
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer();
 
-            player.SoundLocation = path2;
-            player.Play();
-            
+                player.SoundLocation = path2;
+                player.Play();
+            }
+            catch(Exception)
+            {
+
+            }
             //Process.Start(path2);
            
             Visible = false;
