@@ -21,13 +21,11 @@ namespace Client
         {
             InitializeComponent();
         }
-        string path2;
-        StringBuilder sbPath = new StringBuilder();
-
+       
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-            // "C:\\Users\\Jannek\\Source\\Repos\\Messenger\\Client\\Client\\bin\\Debug"
+            string path2;
+            StringBuilder sbPath = new StringBuilder();
             try
             {
                 sbPath.Append(Application.StartupPath);
@@ -39,6 +37,7 @@ namespace Client
 
                 player.SoundLocation = path2;
                 player.Play();
+               
             }
             catch(Exception)
             {
@@ -47,7 +46,7 @@ namespace Client
             //Process.Start(path2);
            
             Visible = false;
-            System.Threading.Thread.Sleep(4000);
+            System.Threading.Thread.Sleep(4450);
             Login Login = new Login();
             Login.ShowDialog();
             Close();

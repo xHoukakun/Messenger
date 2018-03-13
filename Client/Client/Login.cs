@@ -26,7 +26,26 @@ namespace Client
        
         private void bLogIn_Click(object sender, EventArgs e)
         {
+            string path2;
+            StringBuilder sbPath = new StringBuilder();
+            try
+            {
+                sbPath.Append(Application.StartupPath);
+                sbPath.Remove(sbPath.Length - 9, 9);
+                sbPath.Append("\\TP_PressStart.wav");
+                path2 = Convert.ToString(sbPath);
 
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+
+                player.SoundLocation = path2;
+                player.Play();
+                System.Threading.Thread.Sleep(1000);
+
+            }
+            catch (Exception)
+            {
+
+            }
             string sAddress = "";
             string sServerIP;
 
@@ -86,6 +105,29 @@ namespace Client
         private void tServerIP_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            string path2;
+            StringBuilder sbPath = new StringBuilder();
+            try
+            {
+                sbPath.Append(Application.StartupPath);
+                sbPath.Remove(sbPath.Length - 9, 9);
+                sbPath.Append("\\Cantinaband.wav");
+                path2 = Convert.ToString(sbPath);
+
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+
+                player.SoundLocation = path2;
+                player.Play();
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

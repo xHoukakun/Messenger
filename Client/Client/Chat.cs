@@ -55,7 +55,7 @@ namespace Client
             sbSenden.Append(myName);
             sbSenden.Append("|");
             sbSenden.Append(selfIp);
-            eConnection();
+           // eConnection();
         }
 
         //Wenn der Button geclickt wurder wird der Text versendet
@@ -182,6 +182,25 @@ namespace Client
 
         private void Chat_Load(object sender, EventArgs e)
         {
+            string path2;
+            StringBuilder sbPath = new StringBuilder();
+            try
+            {
+                sbPath.Append(Application.StartupPath);
+                sbPath.Remove(sbPath.Length - 9, 9);
+                sbPath.Append("\\01-intro.wav");
+                path2 = Convert.ToString(sbPath);
+
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+
+                player.SoundLocation = path2;
+                player.Play();
+
+            }
+            catch (Exception)
+            {
+
+            }
             //myIp = IPAddress.Parse("127.0.0.1");
             //port = 8887;
             //myEndPoint = new IPEndPoint(myIp, port);
