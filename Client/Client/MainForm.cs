@@ -22,12 +22,19 @@ namespace Client
             InitializeComponent();
         }
         string path2;
+        StringBuilder sbPath = new StringBuilder();
+
         private void MainForm_Load(object sender, EventArgs e)
         {
 
-            try {
-
-                path2 = Application.StartupPath + "\\Iah51muellerMessenger2.wav";
+            // "C:\\Users\\Jannek\\Source\\Repos\\Messenger\\Client\\Client\\bin\\Debug"
+            try
+            {
+                sbPath.Append(Application.StartupPath);
+                sbPath.Remove(sbPath.Length - 9, 9);
+                sbPath.Append("\\Iah51muellerMessenger2.wav");
+                path2 = Convert.ToString(sbPath);
+               
                 System.Media.SoundPlayer player = new System.Media.SoundPlayer();
 
                 player.SoundLocation = path2;
