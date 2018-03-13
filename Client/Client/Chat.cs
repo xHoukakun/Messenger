@@ -37,7 +37,6 @@ namespace Client
         public Chat()
         {
             InitializeComponent();
-            User u = new User();
             Login Login = new Login();
             myIp = IPAddress.Parse("127.0.0.1");
             port = 8887;
