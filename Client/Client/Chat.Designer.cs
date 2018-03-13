@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gClients = new System.Windows.Forms.GroupBox();
             this.bSenden = new System.Windows.Forms.Button();
             this.textBoxSender = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -41,18 +40,8 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
+            this.lClients = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
-            // 
-            // gClients
-            // 
-            this.gClients.BackColor = System.Drawing.Color.White;
-            this.gClients.ForeColor = System.Drawing.Color.Maroon;
-            this.gClients.Location = new System.Drawing.Point(12, 35);
-            this.gClients.Name = "gClients";
-            this.gClients.Size = new System.Drawing.Size(154, 398);
-            this.gClients.TabIndex = 0;
-            this.gClients.TabStop = false;
-            this.gClients.Text = "Clients:";
             // 
             // bSenden
             // 
@@ -152,12 +141,21 @@
             this.textBox10.Size = new System.Drawing.Size(417, 20);
             this.textBox10.TabIndex = 12;
             // 
+            // lClients
+            // 
+            this.lClients.FormattingEnabled = true;
+            this.lClients.Location = new System.Drawing.Point(2, 78);
+            this.lClients.Name = "lClients";
+            this.lClients.Size = new System.Drawing.Size(120, 329);
+            this.lClients.TabIndex = 13;
+            // 
             // Chat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCoral;
             this.ClientSize = new System.Drawing.Size(687, 545);
+            this.Controls.Add(this.lClients);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox8);
@@ -170,7 +168,6 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textBoxSender);
             this.Controls.Add(this.bSenden);
-            this.Controls.Add(this.gClients);
             this.Name = "Chat";
             this.Text = "Chat";
             this.Load += new System.EventHandler(this.Chat_Load);
@@ -180,8 +177,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox gClients;
         private System.Windows.Forms.Button bSenden;
         private System.Windows.Forms.TextBox textBoxSender;
         private System.Windows.Forms.TextBox textBox1;
@@ -194,6 +189,7 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.ListBox lClients;
     }
 }
 

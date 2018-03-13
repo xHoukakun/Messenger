@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Diagnostics;
 
 namespace Client
 {
@@ -42,6 +43,7 @@ namespace Client
             port = 8887;
             myEndPoint = new IPEndPoint(myIp, port);
             mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            lClients.DisplayMember = "GetFormrtierteAusgabe";
            
         }
         //Der Name, die eigene IP und die Server IP werden übergeben
@@ -107,6 +109,7 @@ namespace Client
                 //    MyNames = MyNames + Encoding.ASCII.GetString(bytesReceived, 0, bytes);
                 //} while (bytes > 0);
                 mySocket.Close();
+                sbSenden.Clear();
             }
         }
         private void tConnect()
@@ -131,6 +134,7 @@ namespace Client
             if (mySocket.Connected)
             {
                 mySocket.Send(bytesSent, bytesSent.Length, SocketFlags.None);
+                sbSenden.Clear();
             }
             mySocket.Close();
             
@@ -183,6 +187,31 @@ namespace Client
             //port = 8887;
             //myEndPoint = new IPEndPoint(myIp, port);
             //mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); //TCP Echo Server
+        }
+
+        private void lClients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lClients.SelectedItem != null)
+            {
+                textBox10.ResetText();               
+                textBox9.ResetText();
+                textBox8.ResetText();
+                textBox7.ResetText();                
+                textBox6.ResetText();                
+                textBox5.ResetText();               
+                textBox4.ResetText();                
+                textBox3.ResetText();                
+                textBox2.ResetText();               
+                textBox1.ResetText();
+
+                User uUser = lClients.SelectedItem as User;
+                gIP = uUser.uIPv4;
+                gName = uUser.uName;
+                gNachricht = uUser.uNachricht;
+                textBox1.AppendText(gName + ":" + gNachricht);
+                
+
+            }
         }
     }
 }
