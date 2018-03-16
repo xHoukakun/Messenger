@@ -16,8 +16,9 @@ namespace Client
 {
     public partial class Chat : Form
     {
-        
+
         private string TextBox;
+        private string Nachricht;
         private StringBuilder sbSenden = new StringBuilder();
         private string selfIp;
         private string myName;
@@ -55,7 +56,7 @@ namespace Client
             sbSenden.Append(myName);
             sbSenden.Append("|");
             sbSenden.Append(selfIp);
-           // eConnection();
+            eConnection();
         }
 
         //Wenn der Button geclickt wurder wird der Text versendet
@@ -76,7 +77,7 @@ namespace Client
 
         }
 
-        private void eConnection()  //merken
+        private void eConnection() 
         {
             
             Byte[] bytesSent = Encoding.ASCII.GetBytes(sbSenden.ToString());
@@ -101,12 +102,12 @@ namespace Client
                 int bytes = 0;
                 MessageBox.Show("Connection Establish");
                 mySocket.Send(bytesSent, bytesSent.Length, SocketFlags.None);
-                //do
-                //{
-                //    bytes = mySocket.Receive(bytesReceived, bytesReceived.Length, SocketFlags.None);
-                //    // kovertiere die Byte Daten in einen string
-                //    MyNames = MyNames + Encoding.ASCII.GetString(bytesReceived, 0, bytes);
-                //} while (bytes > 0);
+                do
+                {
+                    bytes = mySocket.Receive(bytesReceived, bytesReceived.Length, SocketFlags.None);
+                    // kovertiere die Byte Daten in einen string
+                    Nachricht = Nachricht + Encoding.ASCII.GetString(bytesReceived, 0, bytes);
+                } while (bytes > 0);
                 mySocket.Close();
                 sbSenden.Clear();
             }
@@ -145,7 +146,7 @@ namespace Client
             {
                 sbSenden.Clear();
                 sbSenden.Append("1|");
-                sbSenden.Append(gName);  //Name oder IP wird noch entschieden
+                sbSenden.Append(gName); 
                 sbSenden.Append("|");
                 sbSenden.Append(myName);
                 sbSenden.Append("|");
