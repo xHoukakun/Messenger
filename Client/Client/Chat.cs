@@ -66,7 +66,7 @@ namespace Client
             {
                 
 
-                mySocket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8887)); //Server Endpoint  Was für ein Port und Was für eine IP 
+                mySocket.Connect(new IPEndPoint(IPAddress.Parse("10.2.121.139"), 8887)); //Server Endpoint  Was für ein Port und Was für eine IP 
             }
             catch (Exception)
             {
@@ -129,7 +129,7 @@ namespace Client
 
         private void Chat_Load(object sender, EventArgs e)
         {
-            myIp = IPAddress.Parse("localhost");
+            //myIp = IPAddress.Parse("localhost");
             port = 8887;
             myEndPoint = new IPEndPoint(myIp, port);
             mySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); //TCP Echo Server
