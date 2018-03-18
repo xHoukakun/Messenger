@@ -11,14 +11,20 @@ namespace Client
 {
     class User
     {
-        int iUserID;
-        string sName;
-        TcpClient TCP;
-        string IpAdress;
+        public string uName;
+        public string uIPv4;
+        public string uNachricht;
+        private string Formatierteausgabe;
+
+
+        public string GetFormatierteAusgabe
+        {
+            get { return Formatierteausgabe = uName + " "; }
+        }
+        // static void setName()
+        //    {
+        //name=sName;
+        //return(name);
+        //    }
     }
-    // static void setName()
-    //    {
-    //name=sName;
-    //return(name);
-    //    }
 }
